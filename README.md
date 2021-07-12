@@ -18,7 +18,7 @@
 -->
 
 # Apache OpenWhisk runtimes for swift
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Build Status](https://travis-ci.com/apache/openwhisk-runtime-swift.svg?branch=master)](https://travis-ci.com/apache/openwhisk-runtime-swift)
 
 
@@ -196,7 +196,7 @@ enum VendingMachineError: Error {
 }
 func main(input: Employee, respondWith: (Employee?, Error?) -> Void) -> Void {
     // Return real error
-    do{
+    do {
         throw VendingMachineError.insufficientFunds(coinsNeeded: 5)
     } catch {
         respondWith(nil, error)

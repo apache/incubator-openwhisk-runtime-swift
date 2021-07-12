@@ -25,7 +25,7 @@ from subprocess import check_output
 
 # Settings
 COMPILE_PREFIX = "/usr/bin/swiftc -module-name Action "
-LINKER_PREFIX =  "/usr/bin/swiftc -target x86_64-unknown-linux -sdk / -L /swiftAction/.build/x86_64-unknown-linux/release -o /swiftAction/.build/x86_64-unknown-linux/release/Action -module-name Action -emit-executable -Xlinker '-rpath=$ORIGIN'"
+LINKER_PREFIX = "/usr/bin/swiftc -target x86_64-unknown-linux -sdk / -L /swiftAction/.build/x86_64-unknown-linux/release -o /swiftAction/.build/x86_64-unknown-linux/release/Action -module-name Action -emit-executable -Xlinker '-rpath=$ORIGIN'"
 GENERATED_BUILD_SCRIPT = "/swiftAction/swiftbuildandlink.sh"
 SPM_DIRECTORY = "/swiftAction"
 BUILD_COMMAND = ["swift", "build", "-v", "-c", "release"]
@@ -61,17 +61,17 @@ if compileCommand is not None and linkCommand is not None:
     with open(GENERATED_BUILD_SCRIPT, "w") as buildScript:
         buildScript.write("#!/bin/bash\n")
         buildScript.write("#date\n")
-        buildScript.write("#echo \"Compiling\"\n")
+        buildScript.write('#echo "Compiling"\n')
         buildScript.write("%s\n" % compileCommand)
         buildScript.write("swiftStatus=$?\n")
         buildScript.write("#echo swiftc status is $swiftStatus\n")
-        buildScript.write("if [[ \"$swiftStatus\" -eq \"0\" ]]; then\n")
+        buildScript.write('if [[ "$swiftStatus" -eq "0" ]]; then\n')
         buildScript.write("#date\n")
-        buildScript.write("#echo \"Linking\"\n")
+        buildScript.write('#echo "Linking"\n')
         buildScript.write("%s\n" % linkCommand)
         buildScript.write("#date\n")
         buildScript.write("else\n")
-        buildScript.write(">2& echo \"Action did not compile\"\n")
+        buildScript.write('>2& echo "Action did not compile"\n')
         buildScript.write("exit 1\n")
         buildScript.write("fi")
 
